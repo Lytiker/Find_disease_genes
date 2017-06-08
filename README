@@ -1,0 +1,83 @@
+"""
+Assigment CSC8311 
+Record_dict.py version 1. 10/3/2017
+--------------------------------------
+
+With command line interface IDs of proteins connected to disease can be collected with program Record_dict.py. If any of the proteins found are from same anchestor(COG), or if any proteins in two diseases the same or in same COG these protein and clusters can be found. The purpose of the program is to find similar proteins to gather function of the different proteins. A second purpose would be to find connection between two diseases, in form of having same associated proteins.
+
+
+Prerequisites
+-------------
+
+This program is tested on:
+Python 2.7.12
+BioPython 1.68 
+Debian 8 (Jessie)
+
+
+Downloads
+---------
+Program allows for use of file in case of online database issues. 
+File can be downloaded and unzipped from commandline as follows:
+
+	$ wget 'ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/complete/uniprot_sprot.dat.gz'
+	$ gunzip uniprot_sprot.dat.gz
+
+
+Usage
+-----
+
+Main output is a disease and retrieves IDs from swissprot connected. Two optional command allow for the possibility to find cog ids for associated proteins of the disease, and to display ids that are common in two diseases.
+
+	Example:
+	$ python Record_dict.py -h
+	usage: Record_dict.py [-h] [-c] [-s] string [string ...]
+
+	positional arguments:
+	  string         give disease to retrieve uniprot IDs of associated proteins 
+
+	optional arguments:
+	  -h, --help     show this help message and exit
+	  -c, --cogfind  display a the cog ids for the associated proteins of a
+	                 disease
+	  -s, --simprot  display uniprotIDs that are common in two diseases
+
+	$ python Record_dict.py "Alport syndrome"
+	['P29400', 'P35579', 'Q01955', 'Q9UJ90', 'P53420', 'O60488', 'Q14031', 'Q9Y4X0', 'Q28247']
+
+	$ python Record_dict.py -c "Alport syndrome" 
+	[['OC.7195', 'hsa:1287', 'nr genes in cluster: 493'], ['OC.27493', 'hsa:4627', 'nr genes in cluster: 350'], ['OC.7195', 'hsa:1285', 'nr genes in cluster: 493'], ['OC.640904', 'hsa:23630', 'nr genes in cluster: 106'], ['OC.7195', 'hsa:1286', 'nr genes in cluster: 493'], ['OC.371317', 'hsa:2182', 'nr genes in cluster: 571'], ['OC.7195', 'hsa:1288', 'nr genes in cluster: 493'], ['OC.645379', 'hsa:9949', 'nr genes in cluster: 419'], ['OC.7195', 'cfa:403466', 'nr genes in cluster: 493']]
+
+
+	$ python Record_dict.py -s "alport syndrome" "asthma"
+	no similar proteinIDs
+
+	$ python Record_dict.py -s "Aids" "Cancer"
+	['Q99490', 'Q96LA8', 'P61073', 'Q9UGM3', 'P61978', 'O43719', 'P39023', 'Q9C035', 'P15692', 'Q9BTE3', 'J0D0P6', 'T5CIM4', 'J0PR88', 'I9QNS6', 'K2L2L5', 'J0CFB6', 'J0HJE0', 'I9WNX7', 'J0HZK7', 'I9VZH9', 'J0Q3B5', 'J0IPM1', 'I9TWM4', 'J0PIL3', 'J0A6X6', 'K2LAX9', 'J0PY35', 'J0IMJ1', 'K2K9P4', 'I9S9K9', 'I9TB33', 'K2LEB5', 'J0J0H4', 'J0J409', 'J0QVZ8', 'I9U453', 'J0IMU4', 'T5CZB8', 'K2LBQ0', 'I9S2H8', 'I9XXP2', 'T5CVY9', 'T5CPN9', 'J0QD95', 'I9PZI8', 'T5D448', 'I9R0P2', 'J0AES1', 'T5CQK3', 'I9UF18', 'J0TNK7', 'J0JRE9', 'J0KBC3', 'J0IAB1', 'I9VUC1', 'I9XGZ9', 'I9SWY5', 'J0QHX7', 'J0CDM1', 'I9W2N7', 'J0JUL7', 'J0NBD5', 'J0LYV9', 'I9SEX0', 'J0ILZ6', 'J0DXV5', 'I9X5G0', 'I9SS48', 'J0J5M3', 'J0GIA2', 'J0K5N2', 'J0EFY2', 'I9V589', 'T5DJP5', 'T5C5F4', 'T5D4J3', 'I9PNP0', 'I9UDE3', 'J0NX86', 'J0M253', 'K2KU88', 'T5DBT5']
+
+
+Todo
+----
+
+Further development of the code would include improving user interface for more optional commands such as write to file, functionality of methods Common_cogs in class Disease and same_cogsID in class Comparison. Unittesting would be included. Finally a class for visualisation of evolutionary distances between the orthologs could be added.
+
+
+Versioning
+---------
+
+Use of Git repository 
+
+$ git log -p -2
+commit 7fa12ff58a1fd640d08e62f6fd8a6614a31219c5
+Author: AnneLytics <annelytics2@gmail.com>
+Date:   Fri Mar 10 10:30:35 2017 +0000
+
+    Record_dict.py
+
+diff --git a/Record_dict.py b/Record_dict.py
+new file mode 100644
+index 0000000..62f607d
+--- /dev/null
++++ b/Record_dict.py
+@@ -0,0 +1,204 @@
+"""
