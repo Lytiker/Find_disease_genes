@@ -61,23 +61,4 @@ Todo
 
 Further development of the code would include improving user interface for more optional commands such as write to file, functionality of methods Common_cogs in class Disease and same_cogsID in class Comparison. Unittesting would be included. Finally a class for visualisation of evolutionary distances between the orthologs could be added.
 
-
-Versioning
----------
-
-Use of Git repository 
-
-$ git log -p -2
-commit 7fa12ff58a1fd640d08e62f6fd8a6614a31219c5
-Author: AnneLytics <annelytics2@gmail.com>
-Date:   Fri Mar 10 10:30:35 2017 +0000
-
-    Record_dict.py
-
-diff --git a/Record_dict.py b/Record_dict.py
-new file mode 100644
-index 0000000..62f607d
---- /dev/null
-+++ b/Record_dict.py
-@@ -0,0 +1,204 @@
 """
